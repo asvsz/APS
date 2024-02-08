@@ -1,13 +1,16 @@
 class Configuration:
     _instance = None
-
-    def __new__(cls):
+        
+    @classmethod
+    def instance(cls):
         if cls._instance is None:
-            cls._instance = super().__new__(cls)
+            cls._instance = (cls)
             cls._instance.theme = "dark"
             cls._instance.fontSize = 12
             cls._instance.language = "pt-br"
         return cls._instance
 
 
-print("Tema: {}, Linguagem: {}, Tamanho da Fonte: {}".format(Configuration().theme, Configuration().language, Configuration().fontSize))
+config_inst = Configuration.instance()
+
+print("Tema: {}, Linguagem: {}, Tamanho da Fonte: {}".format(config_inst.theme, config_inst.language, config_inst.fontSize))
